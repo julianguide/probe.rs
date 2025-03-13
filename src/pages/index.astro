@@ -1,0 +1,39 @@
+---
+import Html from "../layouts/Html.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import { posts, images } from "../utils";
+import { Icon } from "astro-icon/components";
+---
+
+<Html title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main>
+    <section>
+      <ul class="">
+        {
+          posts.map((post) => (
+            <li class="odd:bg-gray-100 hover:bg-blue-50 rounded-md">
+              <a href={`/${post.id}`} class="py-5 grid grid-cols-[1fr_4fr]">
+                <Icon name={post.data.icon} class="text-5xl self-center justify-self-center" />
+                <div>
+                  <h1 class="font-semibold underline text-black">
+                    {post.data.title}
+                  </h1>
+                  <p class="italic text-gray-500 text-sm">
+                    <FormattedDate date={post.data.pubDate}  />
+                  </p>
+                  <p class="text-black text-base">
+                    {post.data.description}
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</Html>

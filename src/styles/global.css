@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@font-face {
+	font-family: 'Epilogue';
+	src: url('/fonts/epilogue.ttf') format("truetype");
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/inter.ttf') format("truetype");
+}
+
+@theme {
+  --font-sans: 'Epilogue', sans-serif;
+}
+
+@layer components {
+	a:hover,a:active {
+		@apply text-blue-900
+	}
+}
+
+/* Prose styling */
+@layer utilities {
+
+}

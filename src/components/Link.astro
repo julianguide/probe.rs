@@ -1,0 +1,12 @@
+---
+const {href} = Astro.props
+const domain = import.meta.env.SITE
+let attr = {target: '', rel: ''}
+
+if (!href.includes(domain) && !href.startsWith("/") && !href.startsWith("#")) {
+  attr.target = '_blank';
+  attr.rel = 'noopener';
+}
+---
+
+<a href={href} {...attr}><slot /></a>

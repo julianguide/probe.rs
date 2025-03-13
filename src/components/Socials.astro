@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div class:list={["flex gap-1", className]}>
+  <a href="https://matrix.to/#/#probe-rs:matrix.org" target="_blank" title="Matrix Room">
+    <Icon name="ph--matrix-logo-bold" class="text-3xl" />
+  </a>
+  <a href="https://github.com/probe-rs/probe-rs" target="_blank" title="GitHub repo">
+    <Icon name="line-md--github" class="text-3xl" />
+  </a>
+  <a href="https://opencollective.com/probe-rs" target="_blank" title="open collective">
+    <Icon name="bi--opencollective" class="text-3xl" />
+  </a>
+  <a href="https://github.com/sponsors/probe-rs" target="_blank" title="GitHub Sponsors">
+    <Icon name="github-sponsors" class="text-3xl" />
+  </a>
+  <a href="/rss.xml" target="_blank" title="RSS feed for blog">
+    <Icon name="line-md--rss" class="text-3xl" />
+  </a>
+</div>
+
+<style>
+  a {
+    @apply content-center;
+  }
+</style>

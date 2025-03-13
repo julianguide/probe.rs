@@ -1,0 +1,74 @@
+---
+import Head from "../components/Head.astro";
+import HeaderLink from "../components/HeaderLink.astro";
+import Socials from "../components/Socials.astro";
+import { SITE_TITLE } from "../consts";
+import { Icon } from 'astro-icon/components'
+
+const today = new Date();
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head title={title} description={description} image={image} />
+
+  <body>
+    <div class="border-b border-gray-400">
+      <header>
+        <nav class="flex flex-col md:flex-row justify-around place-items-center max-w-4xl mx-auto">
+          <a href="/" class="">
+            <h1 class="text-4xl font-semibold font-[Epilogue] text-black hover:text-blue-900 pt-5 pb-3">
+              <Icon name="banner" class="inline text-6xl mr-5" />
+              {SITE_TITLE}
+            </h1>
+          </a>
+          <div class="place-items-center my-1 md:order-1">
+            <Socials class="gap-8 md:gap-1" />
+          </div>
+          <div class="md:flex gap-15 h-15 md:h-23">
+            <div class="flex gap-5 h-full">
+              <HeaderLink href="/targets">Targets</HeaderLink>
+              <HeaderLink href="/docs">Documentation</HeaderLink>
+              <HeaderLink href="/blog">Blog</HeaderLink>
+              <HeaderLink href="https://shop.probe.rs/" target="_blank">Shop</HeaderLink>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+
+    <main class="max-w-4xl mx-auto p-3">
+      <slot />
+    </main>
+
+    <footer class="text-gray-500 px-3">
+      <div class="flex flex-col md:flex-row justify-center gap-5 items-center my-10">
+        by the probe-rs contributors
+        <Socials />
+      </div>
+      <p class="text-center text-sm mb-30">
+        Built with
+        <a href="https://astro.build/" target="_blank">
+          Astro<Icon name="lineicons--astro" class="inline text-3xl"/>
+        </a>,
+        <a href="https://tailwindcss.com/" target="_blank">
+          Tailwind CSS<Icon name="mdi--tailwind" class="inline text-3xl"/>
+        </a>,
+        and icons from
+        <a href="https://iconify.design/" target="_blank">
+          iconify.design<Icon name="line-md--iconify2-static" class="inline text-3xl"/>
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  html {
+    /* Prevent long posts with scrollbars from moving body */
+    /* scrollbar-gutter: stable; */
+  }
+</style>
