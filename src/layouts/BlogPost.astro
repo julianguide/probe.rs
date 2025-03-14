@@ -7,7 +7,7 @@ import { SITE_TITLE } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, icon } = Astro.props;
+const { title, description, date, authors } = Astro.props;
 ---
 
 <Html
@@ -16,20 +16,11 @@ const { title, description, pubDate, updatedDate, icon } = Astro.props;
 >
   <main class="prose">
     <article>
-      <h2 class="mb-2">
-        <Icon name={icon} class="inline mr-3" />
-        {title}
-      </h2>
-      <div class="italic mb-4">
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-      </div>
+      <h2>{title}</h2>
+      <p class="italic">
+        by {authors.join(', ')} |
+        <FormattedDate date={date} />
+      </p>
       <slot />
     </article>
   </main>

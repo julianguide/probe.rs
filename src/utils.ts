@@ -1,9 +1,9 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { ImageMetadata } from "astro";
 
-export const posts = (
-  await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)
-).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+export const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
 export const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/content/images/*.{jpeg,jpg,png,gif,svg}"
 );
