@@ -10,15 +10,19 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.1.0",
+    "@astrojs/preact": "^4.0.5",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/vite": "^4.0.12",
     "astro": "^5.4.2",
     "astro-expressive-code": "^0.40.2",
     "astro-icon": "^1.1.5",
+    "js-yaml": "^4.1.0",
+    "preact": "^10.26.4",
     "tailwindcss": "^4.0.12"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/js-yaml": "^4.0.9"
   }
 }

@@ -27,3 +27,4 @@ for (const [folder, docsInFolder] of Object.entries(docs)) {
   docsInFolder.sort((a, b) => a.data.order < b.data.order ? -1 : 1);
 }
 
+export const targets = await getCollection('targets');

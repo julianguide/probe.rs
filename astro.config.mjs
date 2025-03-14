@@ -7,17 +7,16 @@ import icon from "astro-icon";
 
 import expressiveCode from 'astro-expressive-code';
 
+import preact from '@astrojs/preact';
+
 // https://astro.build/config
 export default defineConfig({
   // Update if deploying elsewhere!
   site: 'https://julianguide.github.io',
   // UPDATE FOR BASE PATH
   base: 'probe.rs',
-  integrations: [
-    expressiveCode(), // Must go before mdx() to add code blocks
-    mdx(),
-    sitemap(),
-    icon({iconDir: 'src/icons'}),],
+  integrations: [// Must go before mdx() to add code blocks
+  expressiveCode(), mdx(), sitemap(), icon({iconDir: 'src/icons'}), preact()],
 
   vite: {
     plugins: [tailwindcss(), icon()],
