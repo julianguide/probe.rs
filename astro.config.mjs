@@ -9,6 +9,7 @@ import icon from "astro-icon";
 export default defineConfig({
   // Update if deploying elsewhere!
   site: 'https://julianguide.github.io',
+  // UPDATE FOR BASE PATH
   base: 'probe.rs',
   integrations: [mdx(), sitemap(), icon({
     iconDir: 'src/icons',
@@ -19,7 +20,7 @@ export default defineConfig({
     server: {
       // ssh -R 80:localhost:4321 serveo.net
       allowedHosts: ['.serveo.net'],
-    }
+    },
   },
 
   compressHTML: true,

@@ -29,7 +29,17 @@ npm run dev
 npm run build
 ```
 
-Find free / open source icons: https://iconify.design/
+### Update domain / base path
+
+Update `astro.config.mjs`, `src/consts.ts` (used for preloads), and `global.css`.
+The last one seems to be necessary due to a bug with `npm run dev`; the base
+paths get rewritten nicely for `npm run build`. It causes warnings like:
+
+> _08:08:13 [WARN] [vite] /probe.rs/fonts/epilogue.ttf referenced in /probe.rs/fonts/epilogue.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime_
+
+### Icons
+
+Find free / open source icons, throw them in `src/icons`: https://iconify.design/
 
 # Original template generated with (after many tweaks by Julian)
 

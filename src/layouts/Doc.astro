@@ -34,7 +34,7 @@ const {
           <div>
             <h3 class="font-bold my-3">{folder.data.title}</h3>
             {docs[folder.id].map((doc) => (
-              <a href={`/docs/${doc.id}`} title={doc.data.description}>
+              <a href={import.meta.env.BASE_URL + '/docs/' + doc.id} title={doc.data.description}>
                 <p
                   class:list={[
                     "hover:bg-gray-300 px-3 py-1 rounded-md transition",

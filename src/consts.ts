@@ -3,3 +3,7 @@
 
 export const SITE_TITLE = 'probe-rs';
 export const SITE_DESCRIPTION = 'Website for probe-rs project';
+export const FONTS = [
+  {name: 'Inter', file: 'inter.ttf'},
+  {name: 'Epilogue', file: 'epilogue.ttf'},
+]

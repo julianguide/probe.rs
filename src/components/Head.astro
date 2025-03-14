@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
-import { SITE_TITLE } from "../consts";
+import { SITE_TITLE, FONTS } from "../consts";
 
 interface Props {
   title: string;
@@ -31,13 +31,15 @@ const { title, description, image = duckImage.src } = Astro.props;
   <meta name="generator" content={Astro.generator} />
 
   <!-- Font preloads -->
-  <link
-    rel="preload"
-    href="/fonts/epilogue.ttf"
-    as="font"
-    type="font/ttf"
-    crossorigin
-  />
+   {FONTS.map(font => 
+    <link
+      rel="preload"
+      href={import.meta.env.BASE_URL + '/fonts/' + font.file}
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+   )}
 
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />

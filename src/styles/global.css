@@ -3,12 +3,14 @@
 
 @font-face {
 	font-family: 'Epilogue';
-	src: url('/fonts/epilogue.ttf') format("truetype");
+	/* UPDATE FOR BASE PATH */
+	src: url('/probe.rs/fonts/epilogue.ttf') format("truetype");
 }
 
 @font-face {
 	font-family: 'Inter';
-	src: url('/fonts/inter.ttf') format("truetype");
+	/* UPDATE FOR BASE PATH */
+	src: url('/probe.rs/fonts/inter.ttf') format("truetype");
 }
 
 @theme {
