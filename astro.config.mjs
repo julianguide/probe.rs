@@ -5,15 +5,19 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from "astro-icon";
 
+import expressiveCode from 'astro-expressive-code';
+
 // https://astro.build/config
 export default defineConfig({
   // Update if deploying elsewhere!
   site: 'https://julianguide.github.io',
   // UPDATE FOR BASE PATH
   base: 'probe.rs',
-  integrations: [mdx(), sitemap(), icon({
-    iconDir: 'src/icons',
-  })],
+  integrations: [
+    expressiveCode(), // Must go before mdx() to add code blocks
+    mdx(),
+    sitemap(),
+    icon({iconDir: 'src/icons'}),],
 
   vite: {
     plugins: [tailwindcss(), icon()],
