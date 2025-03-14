@@ -1,0 +1,3 @@
+[submodule "src/content/probe-rs-repo"]
+	path = src/content/probe-rs-repo
+	url = https://github.com/probe-rs/probe-rs.git
