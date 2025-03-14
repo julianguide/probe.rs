@@ -1,10 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Doc from "../../layouts/Doc.astro";
-import Prose from "../../components/Prose.astro";
 import { render } from "astro:content";
 import Link from "../../components/Link.astro";
-import type { late } from "astro:schema";
 
 import { docs, docFolders } from "../../utils";
 
@@ -55,7 +53,5 @@ const { Content } = await render(doc);
 ---
 
 <Doc {...doc}>
-  <Prose>
-    <Content components={{ a: Link }} />
-  </Prose>
+  <Content components={{ a: Link }} />
 </Doc>

@@ -1,0 +1,68 @@
+---
+layout: ../layouts/Html.astro
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import FormattedDate from "../components/FormattedDate.astro";
+import { posts } from "../utils";
+
+<h1 class="text-5xl font-bold text-center m-3">
+  The <span class="text-green">user-friendly</span> &<br/>
+  <span class="text-green">flexible</span> embedded toolkit<br />
+  <span class="text-green">that works</span>
+</h1>
+
+Run the following or follow the
+<a
+  href={import.meta.env.BASE_URL + "/docs/getting-started/installation"}
+  class="text-[#15846f] underline">instructions</a>
+for different installation methods
+
+```bash
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+```
+
+## Embedded programming made easy
+
+Run a program on your microchip with the ease of a native application.
+
+Easily print to STDOUT via RTT and defmt encoding when using probe-rs run.
+
+`cargo-flash` can be used to just flash a target and cargo-embed can be used
+to get a full RTT terminal to also send commands to the target and view
+multiple channels at one.
+
+    <div class="flex gap-2 justify-center">
+      <p>
+        <a href="https://crates.io/crates/probe-rs" target="_blank"
+          ><img
+            src="https://img.shields.io/crates/v/probe-rs"
+            alt="crates.io"
+            class="m-1"
+          /></a
+        >
+      </p><p>
+        <a href="https://docs.rs/probe-rs" target="_blank"
+          ><img
+            src="https://docs.rs/probe-rs/badge.svg"
+            alt="documentation"
+            class="m-1"
+          /></a
+        >
+      </p><p>
+        <a href="https://github.com/probe-rs/probe-rs/actions" target="_blank"
+          ><img
+            src="https://img.shields.io/github/actions/workflow/status/probe-rs/probe-rs/ci.yml?branch=master"
+            alt="GH Actions Status"
+            class="m-1"
+          /></a
+        >
+      </p><p>
+        <a href="https://matrix.to/#/#probe-rs:matrix.org" target="_blank"
+          ><img
+            src="https://img.shields.io/badge/chat-probe--rs%3Amatrix.org-brightgreen"
+            alt="chat"
+            class="m-1"
+          /></a
+        >
+      </p>
+    </div>

@@ -6,28 +6,20 @@ import { posts } from "../../utils";
 ---
 
 <Html title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <main>
-    <section>
-      <ul class="">
-        {
-          posts.map((post) => (
-            <li class="odd:bg-gray-100 hover:bg-blue-50 rounded-md">
-              <a href={import.meta.env.BASE_URL + '/blog/' + post.id}>
-                <div class="p-5">
-                  <h1 class="font-semibold underline text-black text-3xl my-1">
-                    {post.data.title}
-                  </h1>
-                  <p class="italic text-gray-500 my-1">
-                    by {post.data.authors.join(', ')} | 
-                    <FormattedDate date={post.data.date}  />
-                  </p>
-                  <p>{post.data.description}</p>
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </main>
+  <ul class="not-prose">
+    {
+      posts.map((post) => (
+        <li class="odd:bg-gray-100 hover:bg-blue-50 rounded-md p-5">
+          <a href={import.meta.env.BASE_URL + "/blog/" + post.id}>
+            <h2 class="font-bold underline text-black text-2xl">{post.data.title}</h2>
+            <p class="italic text-gray-500 my-1">
+              by {post.data.authors.join(", ")} |
+              <FormattedDate date={post.data.date} />
+            </p>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Html>

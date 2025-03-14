@@ -15,6 +15,7 @@
 
 @theme {
   --font-sans: 'Inter', sans-serif;
+	--color-green: #15846f; 
 }
 
 @layer components {
