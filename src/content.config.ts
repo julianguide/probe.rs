@@ -39,24 +39,91 @@ const docsFolderYaml = defineCollection({
 import type { Loader } from "astro/loaders";
 import { readdirSync, readFileSync } from "node:fs";
 
-const targetSchema = new yaml.Schema([
-  new yaml.Type("!Arm", {kind: 'mapping'}),
-  new yaml.Type("!AtsamDsu", {kind: 'mapping'}),
-  new yaml.Type("!Espressif", {kind: 'mapping'}),
-  new yaml.Type("!Flash", {kind: 'mapping'}),
-  new yaml.Type("!Generic", {kind: 'mapping'}),
-  new yaml.Type("!InfineonScu", {kind: 'mapping'}),
-  new yaml.Type("!InfineonXmcScu", {kind: 'mapping'}),
-  new yaml.Type("!InfineonPsocSiid", {kind: 'mapping'}),
-  new yaml.Type("!NordicConfigId", {kind: 'mapping'}),
-  new yaml.Type("!NordicFicrInfo", {kind: 'mapping'}),
-  new yaml.Type("!Nvm", {kind: 'mapping'}),
-  new yaml.Type("!Ram", {kind: 'mapping'}),
-  new yaml.Type("!Riscv", {kind: 'mapping'}),
-  new yaml.Type("!v1", {kind: 'scalar'}),
-  new yaml.Type("!v2", {kind: 'scalar'}),
-  new yaml.Type("!Xtensa", {kind: 'mapping'}),
+// Format: https://probe.rs/docs/knowledge-base/cmsis-packs/#yaml-format
+
+// prettier-ignore
+const targetYamlSchema = yaml.DEFAULT_SCHEMA.extend([
+  new yaml.Type("!Arm", { kind: "mapping", construct: d => ({arm: d})}),
+  new yaml.Type("!AtsamDsu", { kind: "mapping", construct: d => ({atsamDsu: d})}),
+  new yaml.Type("!Espressif", { kind: "mapping", construct: d => ({espressif: d})}),
+  new yaml.Type("!Flash", { kind: "mapping", construct: d => ({flash: d})}),
+  new yaml.Type("!Generic", { kind: "mapping", construct: d => ({generic: d})}),
+  new yaml.Type("!InfineonScu", { kind: "mapping", construct: d => ({infineonScu: d})}),
+  new yaml.Type("!InfineonXmcScu", { kind: "mapping", construct: d => ({infineonXmcScu: d})}),
+  new yaml.Type("!InfineonPsocSiid", { kind: "mapping", construct: d => ({infineonPsocSiid: d})}),
+  new yaml.Type("!NordicConfigId", { kind: "mapping", construct: d => ({nordicConfigId: d})}),
+  new yaml.Type("!NordicFicrInfo", { kind: "mapping", construct: d => ({nordicFicrInfo: d})}),
+  new yaml.Type("!Nvm", { kind: "mapping", construct: d => ({nvm: d})}),
+  new yaml.Type("!Ram", { kind: "mapping", construct: d => ({ram: d})}),
+  new yaml.Type("!Riscv", { kind: 'mapping', construct: d => ({riscv: d})}),
+  new yaml.Type("!v1", { kind: "scalar", construct: d => ({v1: d})}),
+  new yaml.Type("!v2", { kind: "scalar", construct: d => ({v2: d})}),
+  new yaml.Type("!Xtensa", { kind: "mapping", construct: d => ({xtensa: d})}),
 ]);
+
+const targetSchema = z.object({
+  name: z.string(),
+  manufacturer: z
+    .object({
+      id: z.number(),
+      cc: z.number(),
+    })
+    .optional(),
+  variants: z.array(
+    z.object({
+      name: z.string(),
+      flash_algorithms: z.array(z.string()).optional(),
+      cores: z.array(
+        z.object({
+          name: z.string(),
+          type: z.string(),
+          core_access_options: z.object({
+            // TODO: Validate custom types
+          }),
+        })
+      ),
+      memory_map: z.array(
+        z.object({
+          // TODO: Validate custom types
+        })
+      ),
+    })
+  ),
+  flash_algorithms: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+        default: z.boolean().optional(),
+        instructions: z.string(),
+        pc_init: z.number().optional(),
+        pc_uninit: z.number().optional(),
+        pc_program_page: z.number(),
+        pc_erase_sector: z.number(),
+        pc_erase_all: z.number().optional(),
+        data_section_offset: z.number(),
+        transfer_encoding: z.enum(["raw", "miniz"]).optional(),
+        flash_properties: z.object({
+          address_range: z.object({
+            start: z.number(),
+            end: z.number(),
+          }),
+          page_size: z.number(),
+          erased_byte_value: z.number(),
+          program_page_timeout: z.number(),
+          erase_sector_timeout: z.number(),
+          sectors: z.array(
+            z.object({
+              size: z.number(),
+              address: z.number(),
+            })
+          ),
+          cores: z.array(z.string()).optional(),
+        }),
+      })
+    )
+    .optional(),
+});
 
 const targetLoader: Loader = {
   name: "target-loader",
@@ -69,22 +136,29 @@ const targetLoader: Loader = {
     for (const file of readdirSync(FOLDER)) {
       const raw = readFileSync(FOLDER + file).toString();
       const parsed = yaml.load(raw, {
-        schema: targetSchema,
+        schema: targetYamlSchema,
+        filename: FOLDER + file,
       });
-      store.set({id: file.replace('.yaml', ''), data: parsed});
+      const id = file.replace(".yaml", "");
+      // try {
+      const data = await parseData({
+        id,
+        data: parsed as Record<string, unknown>,
+        filePath: FOLDER + file,
+      });
+      store.set({ id, data });
+      // } catch (e) {
+      //   console.log("failed:", parsed.variants[0].cores);
+      //   // throw e;
+      // }
     }
   },
+  schema: targetSchema,
 };
 
 const targets = defineCollection({
   loader: targetLoader,
-  schema: z.object({
-    name: z.coerce.string(),
-    manufacturer: z.object({
-      id: z.coerce.number().default(0),
-      cc: z.coerce.number().default(0),
-    }).default({id: 0, cc: 0}),
-  }),
+  schema: targetSchema,
 });
 
 export const collections = { blog, docs, docsFolderYaml, targets };
