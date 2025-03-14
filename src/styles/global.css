@@ -15,13 +15,28 @@
 
 @theme {
   --font-sans: 'Inter', sans-serif;
-	--color-green: #15846f; 
+	--color-green: #15846f;
+	--color-lightgreen: #15846f22;
+	--color-lightergreen: #15846f11;
+	--color-graytransparent: #55555555;
 }
 
 @layer components {
 	a:hover,a:active {
-		@apply text-blue-900
+		@apply text-green transition ease-out;
 	}
+}
+
+tr {
+	@apply even:bg-lightgreen;
+}
+
+td {
+	@apply px-2 even:bg-lightergreen;
+}
+
+th {
+	@apply text-center;
 }
 
 /* Prose styling */

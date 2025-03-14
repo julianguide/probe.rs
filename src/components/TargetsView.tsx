@@ -48,22 +48,20 @@ export default function TargetsView({ targets, manufacturers }: Props) {
 	return <>
 		<h1>Targets</h1>
 
-		<p>Showing {targetsToShow.length} targets.</p>
+		<p>Showing {targetsToShow.length} {targetsToShow.length == 1 ? 'target' : 'targets'}.</p>
 
-		<div class="flex flex-col md:flex-row justify-center gap-5">
-			<div class="bg-gray-100 p-2 rounded-md">
+		<div class="sticky top-2 bg-graytransparent rounded-lg p-2">
+			<div class="flex flex-col md:flex-row justify-center">
 				<label>
-					<h3 class="mt-1 text-center">Manufacturer</h3>
-					<select onChange={onChangeManufacturer} class="bg-gray-200 p-1 rounded-md">
+					<h3 class="mt-0 text-center">Manufacturer</h3>
+					<select onChange={onChangeManufacturer} class="w-full bg-gray-100 p-1">
 						{[SHOW_ALL, ...manufacturersToShow].map(m => <option value={m}>{m}</option>)}
 					</select>
 				</label>
-			</div>
 
-			<div class="bg-gray-100 p-2 rounded-md">
 				<label>
-					<h3 class="mt-1 text-center">Family</h3>
-					<select onChange={e => setSelectedFamily((e.target as HTMLSelectElement).value)} class="bg-gray-200 p-1 rounded-md">
+					<h3 class="mt-0 text-center">Family</h3>
+					<select onChange={e => setSelectedFamily((e.target as HTMLSelectElement).value)} class="w-full bg-gray-100 p-1">
 						{[SHOW_ALL, ...familiesToShow].map(f => <option value={f} selected={f == selectedFamily}>{f}</option>)}
 					</select>
 				</label>
