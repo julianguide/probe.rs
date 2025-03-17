@@ -25,3 +25,6 @@ jobs:
               -m "$ git submodule update --init --recursive --checkout --remote" \
               -m "`cat git.log`"
           git push
+          echo
+          echo "github.event json:"
+          echo "${{ toJson(github.event) }}"
