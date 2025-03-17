@@ -21,7 +21,7 @@ jobs:
           git submodule update --init --recursive --checkout --remote > git.log 2>&1
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Update submodules." \
+          git commit -am "Update submodules: ${{ github.event.client_payload.event_name }}" \
               -m "$ git submodule update --init --recursive --checkout --remote" \
               -m "`cat git.log`"
           git push
