@@ -1,6 +1,0 @@
-[submodule "src/content/probe-rs-repo"]
-	path = src/content/probe-rs-repo
-	url = https://github.com/probe-rs/probe-rs.git
-[submodule "src/content/probe-rs-data"]
-	path = src/content/probe-rs-data
-	url = https://github.com/julianguide/probe.rs-data.git
