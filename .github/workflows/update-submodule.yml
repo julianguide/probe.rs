@@ -1,0 +1,25 @@
+name: Update module
+
+# Inspired by:
+# - https://tommoa.me/blog/github-auto-update-submodules/
+# - https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
+
+on:
+  repository_dispatch:
+    types: [update]
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Update module
+        run: |
+          git submodule update --init --recursive --checkout --remote > git.log 2>&1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update submodules." \
+              -m "$ git submodule update --init --recursive --checkout --remote" \
+              -m "`cat git.log`"
+          git push

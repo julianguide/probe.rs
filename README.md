@@ -41,6 +41,18 @@ paths get rewritten nicely for `npm run build`. It causes warnings like:
 
 Find free / open source icons, throw them in `src/icons`: https://iconify.design/
 
+# Submodules added with
+
+```sh
+git submodule add https://github.com/julianguide/probe.rs-data.git src/content/probe-rs-data
+```
+
+## And updated with
+
+```sh
+git submodule update --recursive --remote --checkout
+```
+
 # Original template generated with (after many tweaks by Julian)
 
 ```sh
