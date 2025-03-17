@@ -40,6 +40,6 @@ th {
 }
 
 /* Prose styling */
-@layer utilities {
-
+div.expressive-code {
+	@apply mb-10
 }
