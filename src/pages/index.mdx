@@ -5,11 +5,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import FormattedDate from "../components/FormattedDate.astro";
 import { posts } from "../utils";
 
-<h1 class="text-5xl font-bold text-center m-3">
-  The <span class="text-green">user-friendly</span> &<br/>
-  <span class="text-green">flexible</span> embedded toolkit<br />
-  <span class="text-green">that works</span>
-</h1>
+import banner from '../content/images/banner.svg';
+
+{
+<div class="notprose md:flex gap-5 md:w-xl mx-auto py-20">
+  <h1 class="text-5xl font-bold text-left">
+    <span>The </span><br />
+    <span class="text-green">user-friendly</span> &<br/>
+    <span class="text-green">flexible</span> embedded toolkit<br />
+    <span class="text-green">that works</span>
+  </h1>
+  <Image src={banner} alt="probe-rs logo" class="mx-auto" />
+</div>
+}
 
 Run the following, or follow the
 <a
