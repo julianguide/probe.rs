@@ -132,7 +132,8 @@ const targetLoader: Loader = {
 
     // Vite's recommended import.meta.glob doesn't seem
     // to work in content.config.ts :/
-    const FOLDER = "src/content/probe-rs-repo/probe-rs/targets/";
+    // const FOLDER = "src/content/probe-rs-repo/probe-rs/targets/";
+    const FOLDER = 'node_modules/probe.rs-data/probe-rs/targets/';  // pull from git repo
     for (const file of readdirSync(FOLDER)) {
       const raw = readFileSync(FOLDER + file).toString();
       const parsed = yaml.load(raw, {

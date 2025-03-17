@@ -53,6 +53,16 @@ git submodule add https://github.com/julianguide/probe.rs-data.git src/content/p
 git submodule update --recursive --remote --checkout
 ```
 
+### Alternative: install repo as NPM package
+
+```sh
+npm install https://github.com/julianguide/probe.rs-data
+```
+
+```sh
+npm update probe.rs-data
+```
+
 # Original template generated with (after many tweaks by Julian)
 
 ```sh
