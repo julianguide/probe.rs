@@ -74,71 +74,80 @@ Easily print to STDOUT via <a href="https://github.com/probe-rs/rtt-target">RTT<
 <a href="/docs/tools/cargo-flash/">cargo-flash</a> can be used to just flash a target and <a href="/docs/tools/cargo-embed/">cargo-embed</a>
 can be used to get a full RTT terminal to also send commands to the target and view multiple channels
 at one.
-```shell { title="Rust" }
-$ cargo run --release
-  Compiling microbit v0.1.0 (/microbit/)
-    Finished release [optimized + debuginfo] target(s) in 0.17s
-    Running `probe-rs run --chip nRF51822_xxAA target/thumbv6m-none-eabi/release/microbit`
-    Erasing sectors ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 8.09 KiB/s (eta 0s )
-Programming pages   ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 5.29 KiB/s (eta 0s )
 
-Hello from the microbit!
-Going to udf to print a stacktrace on the host ...
+<details class="pl-5 text-2xl my-3">
+  <summary>Rust: `$ cargo run --release`</summary>
 
-Frame 0: exp_u128 @ 0x00000fa2
-Frame 1: __udf @ 0x000000f2 inline
-      /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/../asm/inline.rs:181:5
-Frame 2: udf @ 0x00000000000000f2 inline
-      /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/call_asm.rs:11:43
-Frame 3: panic @ 0x00000000000000f2
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:36:9
-Frame 4: exp_u128 @ 0x000006be
-      /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/ptr/const_ptr.rs:921:18
-Frame 5: exp_u128 @ 0x000006ec
-      /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/num/bignum.rs:299:60
-Frame 6: b @ 0x0000015e inline
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:45:5
-Frame 7: a @ 0x0000000000000154 inline
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:41:5
-Frame 8: __cortex_m_rt_main @ 0x0000000000000154
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:16:5
-Frame 9: __cortex_m_rt_main_trampoline @ 0x00000104
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:10:1
-Frame 10: <unknown function @ 0x000000ce> @ 0x000000ce inline
-Frame 11: <unknown function @ 0x20004000> @ 0x20004000
-```
+  ```shell title="Rust"
+  $ cargo run --release
+    Compiling microbit v0.1.0 (/microbit/)
+      Finished release [optimized + debuginfo] target(s) in 0.17s
+      Running `probe-rs run --chip nRF51822_xxAA target/thumbv6m-none-eabi/release/microbit`
+      Erasing sectors ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 8.09 KiB/s (eta 0s )
+  Programming pages   ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 5.29 KiB/s (eta 0s )
 
-```shell { title="C" }
-$ make release
-$ probe-rs run --chip nRF51822_xxAA build/microbit.elf
-    Erasing sectors ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 8.09 KiB/s (eta 0s )
-Programming pages   ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 5.29 KiB/s (eta 0s )
+  Hello from the microbit!
+  Going to udf to print a stacktrace on the host ...
 
-Hello from the microbit!
-Going to udf to print a stacktrace on the host ...
+  Frame 0: exp_u128 @ 0x00000fa2
+  Frame 1: __udf @ 0x000000f2 inline
+        /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/../asm/inline.rs:181:5
+  Frame 2: udf @ 0x00000000000000f2 inline
+        /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/call_asm.rs:11:43
+  Frame 3: panic @ 0x00000000000000f2
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:36:9
+  Frame 4: exp_u128 @ 0x000006be
+        /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/ptr/const_ptr.rs:921:18
+  Frame 5: exp_u128 @ 0x000006ec
+        /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/num/bignum.rs:299:60
+  Frame 6: b @ 0x0000015e inline
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:45:5
+  Frame 7: a @ 0x0000000000000154 inline
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:41:5
+  Frame 8: __cortex_m_rt_main @ 0x0000000000000154
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:16:5
+  Frame 9: __cortex_m_rt_main_trampoline @ 0x00000104
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:10:1
+  Frame 10: <unknown function @ 0x000000ce> @ 0x000000ce inline
+  Frame 11: <unknown function @ 0x20004000> @ 0x20004000
+  ```
+</details>
 
-Frame 0: exp_u128 @ 0x00000fa2
-Frame 1: __udf @ 0x000000f2 inline
-      /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/../asm/inline.rs:181:5
-Frame 2: udf @ 0x00000000000000f2 inline
-      /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/call_asm.rs:11:43
-Frame 3: panic @ 0x00000000000000f2
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:36:9
-Frame 4: exp_u128 @ 0x000006be
-      /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/ptr/const_ptr.rs:921:18
-Frame 5: exp_u128 @ 0x000006ec
-      /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/num/bignum.rs:299:60
-Frame 6: b @ 0x0000015e inline
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:45:5
-Frame 7: a @ 0x0000000000000154 inline
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:41:5
-Frame 8: __cortex_m_rt_main @ 0x0000000000000154
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:16:5
-Frame 9: __cortex_m_rt_main_trampoline @ 0x00000104
-      /repos/microbit/examples/gpio-hal-blinky/src/main.rs:10:1
-Frame 10: <unknown function @ 0x000000ce> @ 0x000000ce inline
-Frame 11: <unknown function @ 0x20004000> @ 0x20004000
-```
+<details class="pl-5 text-2xl my-3">
+  <summary>C: `$ make release && probe-rs run`</summary>
+
+  ```shell title="C"
+  $ make release
+  $ probe-rs run --chip nRF51822_xxAA build/microbit.elf
+      Erasing sectors ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 8.09 KiB/s (eta 0s )
+  Programming pages   ✔ [00:00:00] [############] 5.00 KiB/5.00 KiB @ 5.29 KiB/s (eta 0s )
+
+  Hello from the microbit!
+  Going to udf to print a stacktrace on the host ...
+
+  Frame 0: exp_u128 @ 0x00000fa2
+  Frame 1: __udf @ 0x000000f2 inline
+        /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/../asm/inline.rs:181:5
+  Frame 2: udf @ 0x00000000000000f2 inline
+        /.cargo/registry/src/index.crates.io-6f17d22bba15001f/cortex-m-0.7.7/src/call_asm.rs:11:43
+  Frame 3: panic @ 0x00000000000000f2
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:36:9
+  Frame 4: exp_u128 @ 0x000006be
+        /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/ptr/const_ptr.rs:921:18
+  Frame 5: exp_u128 @ 0x000006ec
+        /rustc/5680fa18feaa87f3ff04063800aec256c3d4b4be/library/core/src/num/bignum.rs:299:60
+  Frame 6: b @ 0x0000015e inline
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:45:5
+  Frame 7: a @ 0x0000000000000154 inline
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:41:5
+  Frame 8: __cortex_m_rt_main @ 0x0000000000000154
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:16:5
+  Frame 9: __cortex_m_rt_main_trampoline @ 0x00000104
+        /repos/microbit/examples/gpio-hal-blinky/src/main.rs:10:1
+  Frame 10: <unknown function @ 0x000000ce> @ 0x000000ce inline
+  Frame 11: <unknown function @ 0x20004000> @ 0x20004000
+  ```
+</details>
 
 ## Easy debugging in VSCode
 

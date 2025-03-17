@@ -38,12 +38,12 @@ const { title, description, image } = Astro.props;
       <slot />
     </main>
 
-    <footer class="text-gray-500 px-3 text-center max-w-4xl mx-auto">
+    <footer class="text-gray-500 px-3 text-center max-w-4xl mx-auto my-20">
       <p>by the probe-rs contributors</p>
 
       <Socials class="mx-auto py-3" />
 
-      <p class="text-sm mb-30">
+      <p class="text-sm my-30">
         Built with
         <a href="https://astro.build/" target="_blank">
           Astro<Icon name="lineicons--astro" class="inline text-3xl"/>
@@ -60,9 +60,3 @@ const { title, description, image } = Astro.props;
   </body>
 </html>
 
-<style>
-  html {
-    /* Prevent long posts with scrollbars from moving body */
-    /* scrollbar-gutter: stable; */
-  }
-</style>
