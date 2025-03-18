@@ -14,8 +14,8 @@ const finalHref = href?.toString().startsWith('http') ? href : import.meta.env.B
 href={finalHref}
 	class:list={[
 		className,
-		 { "bg-gray-100": isActive, underline: isActive, }, 
-		 'font-semibold text-xl font-[Inter] content-center py-3 rounded-lg text-center hover:bg-lightgreen hover:underline underline-offset-4 decoration-2 transition',
+		 { underline: isActive, }, 
+		 'py-3 text-center hover:text-green underline-offset-10 decoration-2 transition',
 		]} {...props}>
 	<slot />
 </a>
