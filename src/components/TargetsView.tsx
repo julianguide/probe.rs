@@ -46,9 +46,7 @@ export default function TargetsView({ targets, manufacturers }: Props) {
 	}
 
 	return <>
-		<h1>Targets</h1>
-
-		<p>Showing {targetsToShow.length} {targetsToShow.length == 1 ? 'target' : 'targets'}.</p>
+		<p class="text-center">Showing {targetsToShow.length} {targetsToShow.length == 1 ? 'target' : 'targets'}.</p>
 
 		<div class="sticky top-2 bg-graytransparent rounded-lg p-2">
 			<div class="flex flex-col md:flex-row justify-center">
